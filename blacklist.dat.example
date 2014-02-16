@@ -11,6 +11,7 @@
 #Cell Phone?        ------         (A cell phone call)
 #                  | <---- the 20th column
 #Tested field:     Date field:   Comment field:
+9999999999?        010101        Generic entry for invalid nrs.
 Cell Phone   CA?   010110        ALL CA CELL PHONES
 Paging Phone?      102110        Junk calls
 PAGING PHONE?      010110        JUNK CALLS
