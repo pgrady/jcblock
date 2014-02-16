@@ -763,6 +763,7 @@ static bool check_blacklist( char *callstr )
      printf ("Bad regular expression\n");
   }
   reti = regexec(&regex, callstr, 0, NULL, 0);
+  printf ("Reti: %d\n", reti);
   /* We'll now hold reti as a variable with global scope within this function
      and test for it as we check each blacklist entry. This should be an
      indepdendent check but is close enough for now. Note: An empty blacklist
@@ -855,7 +856,7 @@ static bool check_blacklist( char *callstr )
     }
 
     // Scan the call string for the blacklist entry
-    if( reti == 1 && strstr( callstr, blackbufptr ) != NULL )
+    if( reti == 0 || strstr( callstr, blackbufptr ) != NULL )
     {
 #ifdef DEBUG
       printf("blacklist entry matches: %s\n", blackbuf );
