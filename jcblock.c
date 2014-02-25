@@ -757,8 +757,11 @@ static bool check_blacklist( char *callstr )
       expansion). That results in the following regular expression:
            (?:[2-9][0-8][0-9])([2-9][0-9]{2}[0-9]{4})
   */
+  /* Note: On my RaspberryPi, the curly braces don't see to work as I would expect.
+     Substituting without curly braces this try. */
   /* Compile regular expression */
-  reti = regcomp(&regex, "(?:[2-9][0-8][0-9])([2-9][0-9]{2}[0-9]{4})", 0 );
+//  reti = regcomp(&regex, "(?:[2-9][0-8][0-9])([2-9][0-9]{2}[0-9]{4})", 0 );
+  reti = regcomp(&regex, "[2-9][0-8][0-9][2-9][0-9][0-9][0-9][0-9][0-9][0-9]", 0 );
   if ( reti ) {
      printf ("Bad regular expression\n");
   }
@@ -856,7 +859,7 @@ static bool check_blacklist( char *callstr )
     }
 
     // Scan the call string for the blacklist entry
-    if( reti == 0 || strstr( callstr, blackbufptr ) != NULL )
+    if( reti == 1 || strstr( callstr, blackbufptr ) != NULL )
     {
 #ifdef DEBUG
       printf("blacklist entry matches: %s\n", blackbuf );
